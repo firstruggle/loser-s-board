@@ -7,9 +7,8 @@
 #define ri readint()
 #define gc getchar()
 #define wi(x) printf("%d\n", x)
-#define ls T[x].ch[0]
-#define rs T[x].ch[1]
-#define root T[0].ch[1]
+#define ls(x) T[x].ch[0]
+#define rs(x) T[x].ch[1]
 using namespace std;
 
 int readint() {
@@ -28,24 +27,24 @@ struct node {
 	int size;
 };
 node T[100005];
-int tot;
+int tot, root;
 
-int lr(int x, int fa) {
-	return x == T[fa].ch[1];
+int lr(int x) {
+	return x == rs(T[x].fa);
 }
 
-void Connect(int x, int fa, int way) {
-	T[fa].ch[way] = x;
-	T[x].fa = fa;
+void Connect(int son, int fa, int way) {
+	T[fa].ch[way] = son;
+	T[son].fa = fa;
 }
 
-void push_up(int x) {
-	T[x].size = T[ls].size + T[rs].size + T[x].cnt;
+void push_up(int pos) {
+	T[pos].size = T[ls(pos)].size + T[rs(pos)].size + T[pos].cnt;
 }
 
 void Rotate(int x) {
 	int f = T[x].fa, gf = T[f].fa;
-	int x_f = lr(x, f), f_gf = lr(f, gf);
+	int x_f = lr(x), f_gf = lr(f);
 	Connect(T[x].ch[x_f^1], f, x_f);
 	Connect(f, x, x_f^1);
 	Connect(x, gf, f_gf);
@@ -57,7 +56,7 @@ void splay(int pos, int goal) {
 	for (; T[pos].fa != goal; Rotate(pos)) {
 		int f = T[pos].fa, gf = T[f].fa;
 		if (gf != goal) {
-			(T[gf].ch[0] == f) ^ (T[f].ch[0] == pos) ? Rotate(pos) : Rotate(f);
+			lr(f) ^ lr(pos) ? Rotate(pos) : Rotate(f);
 		}
 	}
 	if (goal == 0)	root = pos;
@@ -111,18 +110,18 @@ void Delet(int x) {//删除数字x
 		T[pos].size--;
 		return;
 	} else {
-		if (!T[pos].ch[0] && !T[pos].ch[1]) {
+		if (!ls(pos) && !rs(pos)) {
 			root = 0;
 			return;
-		} else if (T[pos].ch[0] && T[pos].ch[1]) {
-			int u = T[pos].ch[0];
-			while (T[u].ch[1])	u = T[u].ch[1];
+		} else if (ls(pos) && rs(pos)) {
+			int u = ls(pos);
+			while (rs(u))	u = rs(u);
 			splay(u, 0);
-			Connect(T[pos].ch[1], u, 1);
+			Connect(rs(pos), u, 1);
 			push_up(u);
 		} else {
-			if (T[pos].ch[0])	root = T[pos].ch[0];
-			else	root = T[pos].ch[1];
+			if (ls(pos))	root = ls(pos);
+			else	root = rs(pos);
 			T[root].fa = 0;
 		}
 	}
@@ -130,19 +129,19 @@ void Delet(int x) {//删除数字x
 
 int Rank(int x) {//数字x的排名
 	find(x);
-	return T[T[root].ch[0]].size + 1;
+	return T[ls(root)].size + 1;
 }
 
 int Kth(int x) {//第x大的数
 	int pos = root;
 	if (T[pos].size < x)	return -1;
 	while (true) {
-		int lson = T[pos].ch[0];
+		int lson = ls(pos);
 		if (x > T[lson].size + T[pos].cnt) {
 			x -= T[lson].size + T[pos].cnt;
-			pos = T[pos].ch[1];
+			pos = rs(pos);
 		} else {
-			if (x > T[lson].size)	return T[pos].val;
+			if (x > T[lson].size)	return T[pos].val;//这个题返回的是值
 			pos = lson;
 		}
 	}
