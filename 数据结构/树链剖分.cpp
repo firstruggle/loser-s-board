@@ -26,7 +26,7 @@
 #define rep(i, a, b) for (int i = a; i <= b; i++)
 #define irep(i, a, b) for (int i = a; i >= b; i--)
 #define ls  p << 1
-#define rs	p << 1 | 1
+#define rs  p << 1 | 1
 using namespace std;
 
 typedef double db;
