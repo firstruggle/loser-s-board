@@ -191,16 +191,16 @@ int main() {
 		int op = ri, x, y, z;
 		if (op == 1) {
 			x = ri, y = ri, z = ri;
-			Update(x, y, z % mod);
+			Update(x, y, z % mod);//从x到y的最短路径上的节点都加z
 		} else if (op == 2) {
 			x = ri, y = ri;
-			W(Query(x, y));
+			W(Query(x, y));//查询x到y的最短路节点和
 		} else if (op == 3) {
 			x = ri, z = ri;
-			segupd(id[x], id[x] + size[x] - 1, 1, z % mod);
+			segupd(id[x], id[x] + size[x] - 1, 1, z % mod);//对x的子树全加z
 		} else {
 			x = ri;
-			W(segask(id[x], id[x] + size[x] - 1, 1));
+			W(segask(id[x], id[x] + size[x] - 1, 1));//查询x的子树节点和
 		}
 	}
 	return 0;
