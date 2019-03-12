@@ -1,3 +1,25 @@
+---------------目前常用的快速读写，借鉴的徐翊轩的--------------
+template <typename T> void read(T &x) {
+	x = 0;
+	int s = 1, c = getchar();
+	for (; !isdigit(c); c = getchar())
+		if (c == '-')	s = -1;
+	for (; isdigit(c); c = getchar())
+		x = x * 10 + c - 48;
+	x *= s;
+}
+
+template <typename T> void write(T x) {
+	if (x < 0)	x = -x, putchar('-');
+	if (x > 9)	write(x / 10);
+	putchar(x % 10 + '0');
+}
+
+template <typename T> void writeln(T x) {
+	write(x);
+	puts("");
+}
+--------------------我以前的fread写法----------------------
 int pos,len;
 char buf[1005];
 
@@ -20,7 +42,7 @@ int readint()
 	return x*s;
 }
 
---------------------另一种--------------------------
+--------------------网上看到的另一种--------------------------
 struct ios
 {
 	inline char read()
