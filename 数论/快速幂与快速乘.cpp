@@ -9,7 +9,7 @@ long long mod_pow(long long x, long long n, long long mod)
 		x = x*x%mod;
 		n >>= 1;
 	}
-	return res;
+	longreturn res;
 }
 
 //快速乘a*b%mod
@@ -27,11 +27,9 @@ long long mod_mul(long long a, long long b, long long mod)
 }
 
 //一行快速乘O(1)
-long long quick_mul(long long a, long long b,long long mod)
-{
-	return ((a*b-(long long)(((long double)a*b+0.5)/mod)*mod)%mod+mod)%mod;
+inline ll ksc(ll a, ll b, ll mod) {//注意这里a和b之前一定是要%mod的，才能保证a * b / mod不爆longlong
+    return ((a * b - (ll)((long double)a / mod * b) * mod) % mod + mod) % mod;
 }
-
 //算法进阶指南的快速乘
 long long quick_mul(long long a, long long b, long long mod)
 {
