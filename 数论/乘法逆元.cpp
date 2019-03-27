@@ -21,7 +21,7 @@ void getinv(int n) {
 
 //组合计算时求1~n中i！的逆元
 void facinv(int n) {
-	fac[0] = 1;
+	fac[0] = inv[0] = 1;
 	for (int i = 1; i <= n; i++)
 		fac[i] = (ll)fac[i - 1] * i % p;
 
