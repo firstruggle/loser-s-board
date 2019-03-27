@@ -25,7 +25,7 @@ void facinv(int n) {
 	for (int i = 1; i <= n; i++)
 		fac[i] = (ll)fac[i - 1] * i % p;
 
-	inv[n] = ksm(n, p - 2, p);
+	inv[n] = ksm(fac[n], p - 2, p);
 	for (int i = n - 1; i; i--)
 		inv[i] = (ll)(inv[i+1] * (i+1)) % p;
 	//1 / i! == 1 / (i+1)! * (i+1)
