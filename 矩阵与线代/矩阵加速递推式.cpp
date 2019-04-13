@@ -1,23 +1,26 @@
 //常规矩阵幂
 struct Matrix {
-	ll v[2][2];
+	int n;
+	int v[maxn][maxn];
 
-	Matrix() {
-		init(v, 0);
-	}
+	Matrix(int n) { memset(v, 0, sizeof v); this->n = n; }
 
 	friend Matrix operator * (Matrix A, Matrix B) {
-		Matrix ret;
-		rep(i, 0, 1)
-			rep(j, 0, 1)
-				rep(k, 0, 1)
-					ret.v[i][j] = (ret.v[i][j] + (A.v[i][k] * B.v[k][j]) % mod) % mod;
+		int n = A.n;
+		Matrix ret(n);
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < n; j++)
+				for (int k = 0; k < n; k++) {
+					ret.v[i][j] = ((ll)ret.v[i][j] + (ll)A.v[i][k] * B.v[k][j] % (p - 1)) % (p - 1);
+				}
 		return ret;
 	}
 
 	friend Matrix operator ^ (Matrix A, int k) {
-		Matrix ret;
-		ret.v[0][0] = ret.v[1][1] = 1;
+		int n = A.n;
+		Matrix ret(n);
+		for (int i = 0; i < n; i++)
+			ret.v[i][i] = 1;
 		for (; k; k >>= 1) {
 			if (k & 1)	ret = ret * A;
 			A = A * A;
