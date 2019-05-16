@@ -1,3 +1,61 @@
+/*目前在用的*/
+//val是根据题意改的，板子其它部分也是随使用而改变或添加
+struct Aho_Corasick_Automaton {
+    int ch[N][26];//Trie树的转移
+    int val[N];//根据题意赋值。有值则意味着某子串末尾
+    int fail[N];//失配，转移到别的树枝接着找
+    int sz;//注意这个板子sz一定是要从1开计
+    
+    void init() {
+        sz = 0;
+        memset(ch[0], 0, sizeof ch[0]);
+    }
+
+    void insert(char *s, int id) {//Trie的插入
+        int len = strlen(s), now = 0;
+
+        for (int i = 0; i < len; i++){
+            int c = s[i] - 'a';
+            if (!ch[now][c]) {
+                sz++;
+                memset(ch[sz], 0, sizeof ch[sz]);
+                val[sz] = 0;
+                ch[now][c] = sz;
+            }
+            now = ch[now][c];
+        }
+        val[now] = id;
+    }
+
+    void getfail(){
+        queue<int> Q;
+        for (int i = 0; i < 26; i++)
+            if (ch[0][i])
+                fail[ch[0][i]] = 0, Q.push(ch[0][i]);//第二层指向根
+        while (!Q.empty()){
+            int u = Q.front(); Q.pop();
+            for (int i = 0; i < 26; i++)
+                if (ch[u][i])
+                    fail[ch[u][i]] = ch[fail[u]][i], Q.push(ch[u][i]);//指向其他枝上同样的字母
+                else ch[u][i] = ch[fail[u]][i];//使得find时半路突然失配时还能一下拐回去
+        }
+    }
+
+    void find(char *T){
+        int len = strlen(T), now = 0;
+
+        for (int i = 0; i < len; i++){
+            now = ch[now][T[i] - 'a'];
+            for (int t = now; t; t = fail[t])//事实上这是一个不断缩短后缀的过程
+                if (val[t]) Ans[val[t]].cnt++;
+        }
+    }
+}ac;
+
+
+
+
+//刘汝佳的，太慢会卡掉
 struct AC_Automata {
 	int ch[maxnod][26];//Trie树转移
 	int cnt[155];//每个子串出现了几次
