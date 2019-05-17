@@ -2,7 +2,7 @@ void Get_Next(char* s, int len) {
     Next[1] = 0;
     for (int i = 2, j = 0; i <= len; i++) {
         while (j > 0 && s[i] != s[j + 1]) j = Next[j];
-        if (a[i] == a[j + 1]) j++;
+        if (s[i] == s[j + 1]) j++;
         Next[i] = j;
     }
 }
