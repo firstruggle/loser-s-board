@@ -28,7 +28,7 @@ double Length(Vector A) { return sqrt(Dot(A, A)); }//长度
 
 double Angle(Vector A, Vector B) { return acos(Dot(A, B)/Length(A)/Length(B)); }//角度
 
-Vector Rotate(Vector A, double rad) { return Vector(A.x*cos(rad) - A.y*sin(rad), A.x*sin(rad) + A.y*cos(rad)); }//旋转
+Vector Rotate(Vector A, double rad) { return Vector(A.x*cos(rad) - A.y*sin(rad), A.x*sin(rad) + A.y*cos(rad)); }//逆时针旋转
 
 double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }//叉积
 
