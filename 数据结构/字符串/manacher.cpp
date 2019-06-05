@@ -28,6 +28,20 @@ void Manacher(char *s, int n) {//s从0开始
 	}
 }
 
+int main() {
+    //......
+    manacher(s, ls);
+    for (int i = 0; i < (ls << 1) - 1; i++) {
+	tag[i]++; tag[i + p[i]]--;
+    }
+    for (int i = 0; i < (ls << 1) - 1; i++) {
+	tag[i + 1] += tag[i];
+    }
+    //i从0～ls-1遍历，tag[i << 1]即为所求
+}
+
+
+
 void Manacher(char *s, int n) {//s从1开始
 	int m = (n << 1) - 1, x = 1;
 	char t[m + 5];
