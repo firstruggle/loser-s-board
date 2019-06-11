@@ -22,18 +22,18 @@ public class Solution {
     
     public static void main(String[] args) {
         Scanner read = new Scanner(System.in);
-        int n = read.nextInt();
-        BigInteger V = read.nextBigInteger();
-        alpha[] a = new alpha[n];
+        int n = read.nextInt();//读int
+        BigInteger V = read.nextBigInteger();//读bigint
+        alpha[] a = new alpha[n];//开数组
         
         for (int i = 0; i < n; i++) {
             a[i] = new alpha();
-            a[i].name = read.next();
+            a[i].name = read.next();//读字符串，空格分割
             a[i].val = read.nextBigInteger();
         }
         Arrays.sort(a, new XYYcmp());//二维排序
         
-        Vector<String> Ans = new Vector<String>();
+        Vector<String> Ans = new Vector<String>();//开vector
         for (int i = 0; i < n; i++) {
             if (a[i].val.compareTo(V) <= 0) {//大整数的比较
                 V = V.subtract(a[i].val);
@@ -51,3 +51,11 @@ public class Solution {
     }
     
 }
+
+/*java开数组：static int a[] = new int[maxn];
+ *BigInteger：a.compareTo(b) < 0;//大整数a与b的比较: a < b
+             BigInteger.valueOf(int);//int类型化为大整数
+             a.add\subtract\multiply\divide\mod(b);//大整数a加减乘除模b
+**/
+
+    
