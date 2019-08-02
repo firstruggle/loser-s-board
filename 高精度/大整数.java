@@ -54,6 +54,10 @@ public class Solution {
 
 /*java读EOF：while (read.hasNext()) {}
  *java开数组：static int a[] = new int[maxn];
+ *java随机数：import java.util.Random
+            Random ra = new Random();
+            int x = ra.nextInt(100);//[0,100)
+            double y = ra.nextDouble();//[0.0,1.0)
  *BigInteger：a.compareTo(b) < 0;//大整数a与b的比较: a < b
              BigInteger.valueOf(int);//int类型化为大整数
              a.add\subtract\multiply\divide\mod(b);//大整数a加减乘除模b
