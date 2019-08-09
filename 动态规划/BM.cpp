@@ -41,7 +41,8 @@ namespace linear_seq {
 	    return o;
 	}
 
-	int N;//maxn还没搞懂具体多少比较好
+	int N;
+	//maxn比初始vector的size大即可
 	ll a[maxn], h[maxn], t_[maxn], s[maxn], t[maxn];
 	inline void mull(ll*p,ll*q) {
 	    for (int i = 0; i < N + N; ++i) t_[i] = 0;
