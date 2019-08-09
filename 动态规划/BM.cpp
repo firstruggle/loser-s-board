@@ -1,3 +1,4 @@
+//就算初始各项都取了模也一样能搞
 ll ksm(ll a, ll b) {
 	ll res = 1;
 	for (a %= mod; b; b >>= 1) {
