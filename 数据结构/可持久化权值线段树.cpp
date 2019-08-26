@@ -2,7 +2,7 @@
 int Sz, root[maxn];
 struct Seg {
     int sum, l, r;//sum是某值出现次数
-}t[maxn * 20];//值域*log大一点
+}t[maxn * 20];//n*log，注意是n不是值域
 
 int Build(int l, int r) {
     int p = ++Sz;
