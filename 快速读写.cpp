@@ -1,4 +1,4 @@
----------------目前常用的快速读写，借鉴的徐翊轩的--------------
+//快读
 template <typename T> void read(T &x) {
 	x = 0;
 	int s = 1, c = getchar();
@@ -19,28 +19,28 @@ template <typename T> void writeln(T x) {
 	write(x);
 	puts("");
 }
---------------------我以前的fread写法----------------------
+
+//fread
 int pos,len;
 char buf[1005];
 
-int xchar()
-{
+int xchar() {
 	if (pos == len)
 		pos = 0, len = fread(buf, 1, 1005, stdin);
 	return buf[pos++];
 }
 
-int readint()
-{
-	int x=0,s=1,c=xchar();
+int readint() {
+	int x = 0, s = 1, c = xchar();
 	while (c <= 32)	
 		c = xchar();
 	if (c == '-')
 		s = -1, c = xchar();
 	for (; isdigit(c); c = xchar())
-		x = x*10+c-'0';
-	return x*s;
+		x = x * 10 + c - '0';
+	return x * s;
 }
+
 
 --------------------网上看到的另一种--------------------------
 struct ios
