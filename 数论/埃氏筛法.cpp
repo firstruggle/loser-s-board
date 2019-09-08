@@ -1,4 +1,4 @@
-void primes(int  n) {
+void pre(int  n) {
 	fill(v, v+n, true);
 	v[0] = v[1] = false;
 
@@ -14,7 +14,7 @@ void primes(int  n) {
 //O（n）的线性筛
 int v[MAX_N], prime[MAX_N], n, m;
 
-void primes(int n) {
+void pre(int n) {
 	memset(v, 0, sizeof(v));
 	int m = 0;
 
