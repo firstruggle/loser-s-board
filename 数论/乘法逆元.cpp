@@ -13,9 +13,9 @@ ll inv(ll a, ll p) {
 void getinv(int n) {
 	inv[1] = 1;
 	for (int i = 2; i <= n; i++) {
-		inv[i] = p - (ll)p/i * inv[p % i] % p;
+		inv[i] = mod - (ll)mod / i * inv[mod % i] % mod;
 		//或者：
-		//inv[i] = (ll)(p - p / i) * inv[p % i] % p;
+		//inv[i] = (ll)(mod - mod / i) * inv[mod % i] % mod;
 	}
 }
 
