@@ -1,6 +1,7 @@
 int m, s[maxn], x[maxn], y[maxn], c[maxn]/*must maxn*/, sa[maxn], rk[maxn], height[maxn];
 //sa[i]表示排名为i的后缀开头位置在哪， rk[i]表示开头位置是i的后缀排名第几
 //height[i]表示第i名的后缀与第i-1名的后缀的最长公共前缀
+//s[i]的值要从1开始
 
 void get_sa() {
 	memset(c, 0, sizeof c);
