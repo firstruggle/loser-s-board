@@ -4,7 +4,7 @@
 #define gc getchar()
 #define rep(i, a, b) for (int i = a; i <= b; i++)
 using namespace std;
-
+//const LL P = 180143985094819841, G = 6, Gi = 30023997515803307;//大模数
 const int P = 998244353, G = 3, Gi = 332748118, maxn = 4 * 1e6 + 5;
 //P的原根为3,3%P的逆元为332748118
 //原根意味着：3^(P-1) % P = 1,其中P-1是3%P的阶，本应是φ(P)，这里恰好为大素数
