@@ -59,3 +59,53 @@ void ConvexHull(int n) {//标号以0开始
 	}
 	if (n > 1)	cnt--;
 }
+
+
+
+
+---------------另一种写法-----------------
+V operator - (V A, V B) {
+    return V(A.x - B.x, A.y - B.y);
+}
+
+V operator + (V A, V B) {
+    return V(A.x + B.x, A.y + B.y);
+}
+
+bool operator == (V A, V B) {
+    return A.x == B.x && A.y == B.y;
+}
+
+ll Dot(V A, V B) {
+    return A.x * B.x + A.y * B.y;
+}
+
+ll Cross(V A, V B) {
+    return A.x * B.y - A.y * B.x;
+}
+
+bool cmp1(V A, V B) {
+    if (A.x != B.x) return A.x < B.x;
+    return A.y < B.y;
+}
+
+bool cmp2(V A, V B) {
+    ll t = Cross(A, B);
+    if (t) return t > 0;
+    return Dot(A, A) < Dot(B, B);
+}
+
+int st[maxn];
+void Convex(V *p, V *v, int n, int &cnt) {
+    rep(i, 1, n) v[i] = p[i];
+    sort(v + 1, v + 1 + n, cmp1);
+    V Base = v[1];
+    st[++cnt] = 1;
+    rep(i, 1, n) v[i] = v[i] - Base;
+    sort(v + 2, v + 1 + n, cmp2);
+    rep(i, 2, n) {
+        while (cnt > 1 && Cross(v[i] - v[st[cnt - 1]], v[st[cnt]] - v[st[cnt - 1]]) >= 0) cnt--;
+        st[++cnt] = i;
+    }
+    rep(i, 1, cnt) v[i] = v[st[i]] + Base;
+}
