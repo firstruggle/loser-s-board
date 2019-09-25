@@ -27,7 +27,7 @@ bool operator == (Point A, Point B) {
 
 void Convex(V *p, V *v, int n, int &cnt) {//标号以1开始的写法
     cnt = 0;
-	sort(p + 1, p + n + 1, cmp1);
+    sort(p + 1, p + n + 1, cmp1);
     n = unique(p + 1, p + n + 1) - p - 1;
 
 	for (int i = 1; i <= n; i++) {
