@@ -24,7 +24,26 @@ bool operator == (Point A, Point B) {
 	return dcmp(A.x - B.x) == 0 && dcmp(A.y - B.y) == 0;
 }
 
-void ConvexHull(int n) {
+
+void Convex(V *p, V *v, int n, int &cnt) {//标号以1开始的写法
+    cnt = 0;
+	sort(p + 1, p + n + 1, cmp1);
+    n = unique(p + 1, p + n + 1) - p - 1;
+
+	for (int i = 1; i <= n; i++) {
+		while (cnt > 1 && Cross(v[cnt] - v[cnt - 1], p[i] - v[cnt - 1]) <= 0)	cnt--;
+		v[++cnt] = p[i];
+	}
+	int k = cnt;
+	for (int i = n - 1; i; --i) {
+		while (cnt > k && Cross(v[cnt] - v[cnt - 1], p[i] - v[cnt - 1]) <= 0)	cnt--;
+		v[++cnt] = p[i];
+	}
+	if (n > 1)	cnt--;
+}
+
+
+void ConvexHull(int n) {//标号以0开始
 	cnt = 0;
 	sort(p, p + n);
 	n = unique(p, p + n) - p;//去重
