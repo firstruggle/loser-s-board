@@ -61,6 +61,34 @@ public class Solution {
  *BigInteger：a.compareTo(b) < 0;//大整数a与b的比较: a < b
              BigInteger.valueOf(int);//int类型化为大整数
              a.add\subtract\multiply\divide\mod(b);//大整数a加减乘除模b
+ *关于传引用必须用class
+    public class Main {
+	static class myobj {
+		int b;
+		myobj(int x) { 
+			b = x;
+		}
+	}
+	
+	static public void test(int a) {
+		a = a + 1;
+		System.out.println(a);
+	}
+	
+	static public void test2(myobj c) {
+		c.b++;
+		System.out.println(c.b);
+	}
+	
+	public static void main(String[] args) {
+		int x = 10;
+		test(x);
+		System.out.println(x);
+		myobj c = new myobj(x);
+		test2(c);
+		System.out.println(c.b);
+	}
+}
 **/
 
     
