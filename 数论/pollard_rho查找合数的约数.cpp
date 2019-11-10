@@ -5,9 +5,9 @@ ll mul(ll a, ll b, ll mod) {
     ll ans = 0;
     a %= mod;
     while(b) {
-        if(b & 1) ans = (ans + a) % m;
+        if(b & 1) ans = (ans + a) % mod;
         b /= 2;
-        a = (a + a) % m;
+        a = (a + a) % mod;
     }
     return ans;
 }
