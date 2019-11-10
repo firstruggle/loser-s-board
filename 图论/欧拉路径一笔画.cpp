@@ -24,3 +24,4 @@ int main() {
         dfs(1);
         ans[cnt++] = 1;
     }
+}
