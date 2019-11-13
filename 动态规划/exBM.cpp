@@ -1,15 +1,12 @@
-#include <cstdio>
-#include <iostream>
-#include <algorithm>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-const int N = 1e5 + 5;
 const int mod = 1e9;
 typedef long long ll;
 int n, m;
- 
+
+//实测较大的n会卒，小的是对的
 // given first m items init[0..m-1] and coefficents trans[0..m-1] or
-// given first 2 *m items init[0..2m-1], it will compute trans[0..m-1]
+// given first 2 * m items init[0..2m-1], it will compute trans[0..m-1]
 // for you. trans[0..m] should be given as that
 //      init[m] = sum_{i=0}^{m-1} init[i] * trans[i]
 struct LinearRecurrence {
