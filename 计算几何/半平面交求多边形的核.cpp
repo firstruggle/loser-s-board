@@ -1,4 +1,4 @@
-
+//nlogn
 const int maxn = 1e3;
 const double EPS = 1e-9;
 
